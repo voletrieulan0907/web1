@@ -16,7 +16,7 @@
             </div>
             <div class="profile-stats">
                 <div class="stat-item">
-                    <div class="stat-number">{{ "{:,}".format(user.balance) }}</div>
+                    <div class="stat-number">{{ "{:,}".format(user.balance or 0) }}</div>
                     <div class="stat-label">Số dư (VNĐ)</div>
                 </div>
                 <div class="stat-item">

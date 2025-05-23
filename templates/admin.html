@@ -32,7 +32,7 @@
                 <tr>
                     <td>{{ member.username }}</td>
                     <td>{{ member.email }}</td>
-                    <td>{{ "{:,}".format(member.balance) }} VNĐ</td>
+                    <td>{{ "{:,}".format(member.balance or 0) }} VNĐ</td>
                     <td>{{ member.purchases|length }}</td>
                     <td>
                         <a href="#" class="action-btn">Nạp tiền</a>

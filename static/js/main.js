@@ -32,3 +32,22 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
+// ...existing code...
+
+// Tab switching for product detail
+document.addEventListener('DOMContentLoaded', function () {
+    const tabButtons = document.querySelectorAll('.tab-button');
+    const tabPanes = document.querySelectorAll('.tab-pane');
+    tabButtons.forEach(btn => {
+        btn.addEventListener('click', function () {
+            // Remove active from all
+            tabButtons.forEach(b => b.classList.remove('active'));
+            tabPanes.forEach(p => p.classList.remove('active'));
+            // Add active to clicked
+            btn.classList.add('active');
+            const tabId = btn.getAttribute('data-tab');
+            const pane = document.getElementById(tabId);
+            if (pane) pane.classList.add('active');
+        });
+    });
+});
