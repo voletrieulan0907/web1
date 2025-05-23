@@ -16,7 +16,7 @@
             </div>
             <div class="profile-stats">
                 <div class="stat-item">
-                    <div class="stat-number">{{ "{:,}".format(user.balance or 0) }}</div>
+                    <div class="stat-number">{{ user.balance|default(0)|vnd }}</div>
                     <div class="stat-label">Số dư (VNĐ)</div>
                 </div>
                 <div class="stat-item">
@@ -47,7 +47,7 @@
                                 <h4>{{ purchase.name }}</h4>
                                 <p class="purchase-date">{{ purchase.purchase_date[:16] }}</p>
                             </div>
-                            <div class="purchase-price">{{ "{:,}".format(purchase.price) }} VNĐ</div>
+                            <div class="purchase-price">{{ purchase.price|vnd }} VNĐ</div>
                         </div>
                         <!-- ...trong purchases-grid... -->
                         <div class="purchase-stats">

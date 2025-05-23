@@ -25,7 +25,12 @@ def get_user():
         return None
     
     return user_data
-
+@app.template_filter('vnd')
+def vnd_format(value):
+    try:
+        return "{:,}".format(int(value))
+    except Exception:
+        return value
 @app.context_processor
 def inject_user():
     user = get_user()
@@ -191,7 +196,7 @@ def buy_product(product_id):
         return redirect(url_for('home'))
     
     # Kiểm tra số dư
-    if user['balance'] < product['price']:
+    if int(user['balance']) < int(product['price']):
         flash('Số dư không đủ! Vui lòng nạp thêm tiền.', 'error')
         return redirect(url_for('recharge'))
     
@@ -244,7 +249,7 @@ def download_product(purchase_id):
         return redirect(url_for('profile'))
     
     # Cập nhật số lần download
-    user_obj.increment_download_count(purchase_id)
+    user_obj.increment_download_count(purchase_id, user['username'])
     
     flash(f'Đang tải {product["name"]}... (Demo: {product["download_link"]})', 'info')
     return redirect(url_for('profile'))

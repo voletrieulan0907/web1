@@ -67,9 +67,14 @@ class User:
             print(f"Error: {e}")
             return False
 
+    
     def get_transactions(self):
-        res = self.supabase.table("transactions").select("*").execute()
-        return res.data if res.data else []
+        try:
+            res = self.supabase.table("transactions").select("*").execute()
+            return res.data if res.data else []
+        except Exception as e:
+            print(f"Error: {e}")
+            return []
 
     def check_user_has_product(self, username, product_id):
         purchases = self.get_user_purchases(username)
@@ -80,9 +85,9 @@ class User:
         if not user:
             return False
         # Trừ tiền
-        if user['balance'] < price:
+        if int(user['balance'])< int(price):
             return False
-        new_balance = user['balance'] - price
+        new_balance = int(user['balance']) - int(price)
         purchases = user.get('purchases', [])
         purchase = {
             'id': len(purchases) + 1,

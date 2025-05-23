@@ -32,8 +32,8 @@
                 <tr>
                     <td>{{ member.username }}</td>
                     <td>{{ member.email }}</td>
-                    <td>{{ "{:,}".format(member.balance or 0) }} VNĐ</td>
-                    <td>{{ member.purchases|length }}</td>
+                    <td>{{ (member.balance or 0) }} VNĐ</td>
+                    <td>{{ (member.purchases or [])|length }}</td>
                     <td>
                         <a href="#" class="action-btn">Nạp tiền</a>
                         <a href="#" class="action-btn danger">Xóa</a>
@@ -59,7 +59,7 @@
                 <tr>
                     <td>{{ tx.username }}</td>
                     <td>{{ tx.type }}</td>
-                    <td>{{ "{:,}".format(tx.amount) }} VNĐ</td>
+                    <td>{{ (tx.amount) }} VNĐ</td>
                     <td>{{ tx.time }}</td>
                 </tr>
                 {% endfor %}
@@ -86,7 +86,7 @@
                 <tr>
                     <td style="font-size:1.5rem;">{{ prod.icon }}</td>
                     <td>{{ prod.name }}</td>
-                    <td>{{ "{:,}".format(prod.price) }} VNĐ</td>
+                    <td>{{ (prod.price) }} VNĐ</td>
                     <td>{{ prod.category }}</td>
                     <td>
                         <a href="#" class="action-btn">Sửa</a>
